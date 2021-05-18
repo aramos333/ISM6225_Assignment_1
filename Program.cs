@@ -131,19 +131,19 @@ namespace Assignment1
 
 
             Console.Write("Enter the word to assess: ");
-            string word = Console.ReadLine();   // Read the Input string from User at Run Time  
+            string word = Console.ReadLine();     
             Dictionary<char, int> CharacterCount = new Dictionary<char, int>();
 
             //Add character to dictionary
-            for (int i = 0; i < word.Length; i++) //loop the splited string  
+            for (int i = 0; i < word.Length; i++)   
             {
-                if (CharacterCount.ContainsKey(word[i])) // Check if word already exist in dictionary update the count  
+                if (CharacterCount.ContainsKey(word[i]))  
                 {
                     CharacterCount[word[i]]++;
                 }
                 else
                 {
-                    CharacterCount.Add(word[i], 1);  // if a string is repeated and not added in dictionary , here we are adding   
+                    CharacterCount.Add(word[i], 1);   
                 }
             }
 
@@ -191,6 +191,7 @@ namespace Assignment1
             Console.WriteLine("two distinct indices i and j in the array such that arr[i]=arr[j]");
             Console.WriteLine("and the absolute difference between i and j is at most k.");
             Console.WriteLine();
+
             Console.Write("Enter first array of characters separated by commas: ");
             string input_string = Console.ReadLine();
             string[] temp_array = input_string.Split(',');
