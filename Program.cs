@@ -15,22 +15,22 @@ namespace Assignment1
 
             // ------------------------------------------------------------------------------------------------------------
             // Question 1
-            //question_1();
+            question_1();
 
 
             // ------------------------------------------------------------------------------------------------------------
             // Question 2
-            //question_2();
+            question_2();
 
 
             // ------------------------------------------------------------------------------------------------------------
             // Question 3
-            //question_3();
+            question_3();
 
 
             // ------------------------------------------------------------------------------------------------------------
             // Question 4
-            //question_4();
+            question_4();
 
 
             // ------------------------------------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ namespace Assignment1
 
             // ------------------------------------------------------------------------------------------------------------
             // Question 6
-            //question_6();
+            question_6();
 
 
             // ------------------------------------------------------------------------------------------------------------
@@ -49,6 +49,10 @@ namespace Assignment1
             Console.ReadLine();
 
         }
+
+
+
+
 
 
         public static void question_1()
@@ -73,17 +77,6 @@ namespace Assignment1
             int[] marks = Convert2NumericArray(temp_array);
 
 
-            //for (int i = 0; i < temp_array.Length; i++)
-            //{
-            //    try
-            //    {
-            //        marks[i] = Convert.ToInt32(temp_array[i]);
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        Console.WriteLine(e.Message);
-            //    }
-            //}
 
             // Use targetRange()
             int[] results = targetRange(marks, target);
@@ -94,6 +87,8 @@ namespace Assignment1
 
 
         }
+
+
 
 
 
@@ -126,6 +121,9 @@ namespace Assignment1
 
 
 
+
+
+
         public static void question_3()
         {
             Console.WriteLine("------------------------------------------------------------------------------------------------------------");
@@ -152,6 +150,9 @@ namespace Assignment1
 
 
 
+
+
+
         public static void question_4()
         {
             Console.WriteLine("------------------------------------------------------------------------------------------------------------");
@@ -173,11 +174,14 @@ namespace Assignment1
 
 
 
+
+
+
         public static void question_5()
         {
 
             Console.WriteLine("------------------------------------------------------------------------------------------------------------");
-            Console.WriteLine("Question #5: NEEDS WORK!");
+            Console.WriteLine("Question #5:");
             Console.WriteLine("Rocky the Bull is new to programming and is having trouble understating the importance of");
             Console.WriteLine("time complexity. Professor Agrawal assigned you the job of explaining time complexity to");
             Console.WriteLine("Rocky with the example below.");
@@ -199,16 +203,23 @@ namespace Assignment1
 
             if (array1.Length <= array2.Length)
             {
-                Console.WriteLine("Results: [{0}]", string.Join(", ", Intersect1(array1, array2)));
+                Console.WriteLine("Results using built-in function : [{0}]", string.Join(", ", Intersect0(array1, array2)));
+                Console.WriteLine("Results using Array             : [{0}]", string.Join(", ", Intersect1(array1, array2)));
+                Console.WriteLine("Results using Dictionary        : [{0}]", string.Join(", ", Intersect3(array1, array2)));
             }
             else
             {
-                Console.WriteLine("Results: [{0}]", string.Join(", ", Intersect1(array2, array1)));
+                Console.WriteLine("Results using built-in function : [{0}]", string.Join(", ", Intersect0(array2, array1)));
+                Console.WriteLine("Results using Array             : [{0}]", string.Join(", ", Intersect1(array2, array1)));
+                Console.WriteLine("Results using Dictionary        : [{0}]", string.Join(", ", Intersect3(array2, array1)));
             }
             Console.WriteLine();
             Console.Write("Press <Enter> to continue...");
             Console.ReadLine();
         }
+
+
+
 
 
 
@@ -249,16 +260,17 @@ namespace Assignment1
 
 
 
+
         // Used in question #1
         public static int[] targetRange(int[] marks, int target)
         {
             int[] results = new int[2];
-            results[0] = Array.IndexOf(marks, target) + 1;
-            results[1] = Array.LastIndexOf(marks, target) + 1;
-            results[0] = (results[0] != 0 ? results[0] : -1);
-            results[1] = (results[1] != 0 ? results[1] : -1);
+            results[0] = Array.IndexOf(marks, target);
+            results[1] = Array.LastIndexOf(marks, target);
             return results;
         }
+
+
 
 
 
@@ -284,6 +296,9 @@ namespace Assignment1
 
 
 
+
+
+
         // Used in question #2
         public static string StringReverse(string in_string)
         {
@@ -295,8 +310,12 @@ namespace Assignment1
                 out_string = out_string + in_string[i];
 
             }
+
             return out_string;
         }
+
+
+
 
 
 
@@ -333,6 +352,10 @@ namespace Assignment1
 
             return sum;
         }
+
+
+
+
 
 
         // Used in question #4
@@ -372,15 +395,58 @@ namespace Assignment1
         }
 
 
+
+
+
+
         // Used in question #5
         public static int[] Intersect0(int[] nums1, int[] nums2)
         {
-            var results = nums1.Intersect(nums2);
-            return (int[])results;
+            // Using built-in function
+            return nums1.Intersect(nums2).ToArray();
         }
 
 
+
+
+
+
+        // Used in question #5
         public static int[] Intersect1(int[] nums1, int[] nums2)
+        {
+            // Using array
+            int[] results = new int[nums2.Length];
+
+            // Initial pointers and results for merge check.
+            int x = -1;
+            bool found = false;
+            for (int i = 0; i < nums1.Length; i++)
+            {
+                found = false;
+                for (int j = 0; j < nums2.Length; j++)
+                {
+                    if (nums1[i].Equals(nums2[j]))
+                    {
+                        found = true;
+                    }
+                }
+                if (found)
+                {
+                    x++;
+                    results[x] = nums1[i];
+                }
+            }
+            Array.Resize(ref results, x + 1);
+            return results;
+        }
+
+
+
+
+
+
+        // Used in question #5
+        public static int[] IntersectX(int[] nums1, int[] nums2)
         {
             int[] results = new int[nums1.Length];
 
@@ -390,79 +456,81 @@ namespace Assignment1
             int value = 0;
 
             // Continue until either array is exhausted.
-            while ((i < nums1.Length) & (j < nums2.Length ))
-                {
-                    //Check for intersect or which list has lowest value.
+            while ((i < nums1.Length) & (j < nums2.Length))
+            {
+                //Check for intersect or which list has lowest value.
 
-                    if (nums1[i] == nums2[j])
-                    {
+                if (nums1[i] == nums2[j])
+                {
                     //Intersect, save, advance both lists to next number.
 
-                        results[i] = nums1[i];
-                        value = nums1[i];
+                    results[i] = nums1[i];
+                    value = nums1[i];
 
-                        while ((i < nums1.Length) & ( nums1[i] == value))
-                        {
-                            i++;
-                        }
-                            
-                        while ((j < nums2.Length) & (nums2[j] == value))
-                        {
-                            j++;
-                        }
-                            
-                    }
-                    else if (nums1[i] < nums2[j])
+                    while ((i < nums1.Length) & (nums1[i] == value))
                     {
-                        //# A has smallest, advance it to next number.
-                        value = nums1[i];
-                        while (( i < nums1.Length) & ( nums1[i] == value))
-                            {
-                                i++;
-                            }
-                            
+                        i++;
                     }
-                    else
-                    {
-                        //# B has smallest, advance it to next number.
-                        value = nums2[j];
+
                     while ((j < nums2.Length) & (nums2[j] == value))
+                    {
                         j++;
                     }
-                        
-                }
-                
 
+                }
+                else if (nums1[i] < nums2[j])
+                {
+                    //# A has smallest, advance it to next number.
+                    value = nums1[i];
+                    while ((i < nums1.Length) & (nums1[i] == value))
+                    {
+                        i++;
+                    }
+
+                }
+                else
+                {
+                    //# B has smallest, advance it to next number.
+                    value = nums2[j];
+                    while ((j < nums2.Length) & (nums2[j] == value))
+                        j++;
+                }
+
+            }
 
             return results;
         }
 
 
 
+
+
+        // Not used - only detects distinct values
+        // Used in question #5
         public static int[] Intersect2(int[] nums1, int[] nums2)
         {
-           
+            // Using dictionary data structure
             Dictionary<int, bool> Intersection = new Dictionary<int, bool>();
-            int sum = 0;
 
             //Add smaller array items to dictionary
-            for (int i = 0; i < nums1.Length; i++)
+            for (int j = 0; j < nums1.Length; j++)
             {
-                if (!Intersection.ContainsKey(nums1[i]))
+                if (!Intersection.ContainsKey(nums1[j]))
                 {
-                    Intersection.Add(nums1[i], false);
-                }   
-            }
-
-            //Process larger array items against dictionary
-            for (int i = 0; i < nums2.Length; i++)
-            {
-                if (!Intersection.ContainsKey(nums2[i]))
-                {
-                    Intersection[nums2[i]] = true;
+                    Intersection.Add(nums1[j], false);
                 }
             }
 
+            //Process larger array items against dictionary
+            for (int j = 0; j < nums2.Length; j++)
+            {
+                if (Intersection.ContainsKey(nums2[j]))
+                {
+                    Intersection[nums2[j]] = true;
+                }
+            }
+
+            // Compile array of matched entries
             int intersection_count = Intersection.Count(kv => kv.Value.Equals(true));
             int[] results = new int[intersection_count];
             int i = -1;
@@ -475,8 +543,47 @@ namespace Assignment1
                 }
             }
             return results;
-
         }
+
+
+
+
+        // Used in question #5
+        public static int[] Intersect3(int[] nums1, int[] nums2)
+        {
+            // Using dictionary data structure
+            Dictionary<int, int> Intersection = new Dictionary<int, int>();
+
+            // Initial pointers and results for merge check.
+            int x = -1;
+            bool found = false;
+            for (int i = 0; i < nums1.Length; i++)
+            {
+                found = false;
+                for (int j = 0; j < nums2.Length; j++)
+                {
+                    if (nums1[i].Equals(nums2[j]))
+                    {
+                        found = true;
+                    }
+                }
+                if (found)
+                {
+                    Intersection.Add(i, nums1[i]);
+                }
+            }
+
+            // Compile array of matched entries
+            int[] results = new int[Intersection.Count];
+            int n = -1;
+            foreach (KeyValuePair<int, int> item in Intersection)
+            {
+                n++;
+                results[n] = item.Value;
+            }
+            return results;
+        }
+
 
 
         // Used in question #6
@@ -496,9 +603,12 @@ namespace Assignment1
                     }
                 }
             }
-
             return response;
         }
+
+
+
+
 
 
         public static int[] Convert2NumericArray(string[] input)
@@ -518,6 +628,57 @@ namespace Assignment1
             return results;
         }
 
-
     }
+
+/*using System;
+Carla Bertoli - Question 1 
+namespace ArrayApplication
+{
+    class MyArray
+    {
+        static void Main(string[] args)
+        {
+            int[] n = new int[10]; // n is an array of 10 integers 
+            //initialize elements of array n 
+            for (int i = 0; i < 10; i++)
+            {
+                n[i] = i + 100;
+            }
+            //output each array element's value 
+            foreach (int j in n)
+            {
+                int i = j - 100;
+                Console.WriteLine("Element[{0}] = {1}", i, j);
+            }
+            Console.ReadKey();
+            int a = Array.IndexOf(n, 10);
+            Console.WriteLine(a); 
+        }
+        
+    }
+}
+*/
+
+    //Carla Bertoli - Question 2 
+    /*using System;
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string Str, reversestring = "stisverinU fo htuoS adirolF";
+            int Length;
+            Console.Write("University of South Florida : ");
+            Str = Console.ReadLine();
+            Length = Str.Length - 1;
+            while (Length >= 0)
+            {
+                reversestring = reversestring + Str[Length];
+                Length--;
+            }
+            Console.WriteLine("Reverse  String  Is  {0}", reversestring);
+            Console.ReadLine();
+        }
+    }
+    */
+
 }
