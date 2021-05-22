@@ -622,3 +622,62 @@ namespace ArrayApplication
     */
 
 }
+
+/*using System;
+
+
+Carla Bertoli - Question 1 
+namespace ArrayApplication
+{
+    class MyArray
+    {
+        static void Main(string[] args)
+        {
+            int[] n = new int[10]; // n is an array of 10 integers 
+
+            //initialize elements of array n 
+            for (int i = 0; i < 10; i++)
+            {
+                n[i] = i + 100;
+            }
+
+            //output each array element's value 
+            foreach (int j in n)
+            {
+                int i = j - 100;
+                Console.WriteLine("Element[{0}] = {1}", i, j);
+            }
+            Console.ReadKey();
+
+            int a = Array.IndexOf(n, 10);
+            Console.WriteLine(a); 
+
+        }
+        
+    }
+}
+*/
+
+//Carla Bertoli - Question 2 
+/*using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        string Str, reversestring = "stisverinU fo htuoS adirolF";
+        int Length;
+        Console.Write("University of South Florida : ");
+        Str = Console.ReadLine();
+        Length = Str.Length - 1;
+        while (Length >= 0)
+        {
+            reversestring = reversestring + Str[Length];
+            Length--;
+        }
+        Console.WriteLine("Reverse  String  Is  {0}", reversestring);
+        Console.ReadLine();
+    }
+}
+
+*/
+
