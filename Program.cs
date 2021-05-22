@@ -577,42 +577,58 @@ namespace Assignment1
 
 }
 
-/*using System;
-
-
-Carla Bertoli - Question 1 
-namespace ArrayApplication
+/*
+//Carla Bertoli - Question 1 
+using System;
+public static class Extensions
 {
-    class MyArray
+    public static int findIndex<T>(this T[] array, T item)
+    {
+        return Array.IndexOf(array, item);
+    }
+}
+
+namespace FirstDraft 
+{
+    public static class Program
     {
         static void Main(string[] args)
         {
-            int[] n = new int[10]; // n is an array of 10 integers 
+            Console.WriteLine("Enter 5 numbers:");
+            int A = Convert.ToInt32(Console.ReadLine());
+            int B = Convert.ToInt32(Console.ReadLine());
+            int C = Convert.ToInt32(Console.ReadLine());
+            int D = Convert.ToInt32(Console.ReadLine());
+            int E = Convert.ToInt32(Console.ReadLine());
 
-            //initialize elements of array n 
-            for (int i = 0; i < 10; i++)
+            Console.WriteLine();
+
+            int[] array = { A, B, C, D, E };
+            for (int i = 0; i < array.Length; i++)
             {
-                n[i] = i + 100;
+                Console.Write(array[i]);
+                if (i < array.Length - 1)
+                {
+                    Console.Write(",");
+                }
             }
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Please enter your variable ");
+            int target_var = Convert.ToInt32(Console.ReadLine());
 
-            //output each array element's value 
-            foreach (int j in n)
+            int index = array.findIndex(target_var);
+            if (index != -1)
             {
-                int i = j - 100;
-                Console.WriteLine("Element[{0}] = {1}", i, j);
+                Console.WriteLine(String.Format("[{0},{1}]", index, Array.LastIndexOf(array, target_var)));
             }
-            Console.ReadKey();
-
-            int a = Array.IndexOf(n, 10);
-            Console.WriteLine(a); 
-
+            else
+            {
+                Console.WriteLine("[-1,1]");
+            }
         }
-        
-    }
-}
-*/
-
-//Carla Bertoli - Question 2 
+   */
+//Carla Bertoli - Question 2 -- This is my first attempt since it still contains the reversestring. 
 /*using System;
 class Program
 {
@@ -634,4 +650,64 @@ class Program
 }
 
 */
+/* Carla Bertoli - Question 3 
+using System;
+class GFG
+{
+    static int minSum(int[] arr, int n)
+    {
+        int sum = arr[0];
 
+        for (int i = 1; i < n; i++)
+        {
+            if (arr[i] == arr[i - 1])
+            {
+                int j = i;
+                while (j < n && arr[j] <= arr[j - 1])
+                {
+                    arr[j] = arr[j] + 1;
+                    j++;
+                }
+            }
+            sum = sum + arr[i];
+        }
+        return sum;
+    }
+    public static void Main()
+    {
+        int[] arr = { 2, 2, 3, 5, 6 };
+        int n = arr.Length;
+        Console.WriteLine(minSum(arr, n));
+    }
+}
+*/
+
+/*Carla Bertoli - Question 4 - Without the dictionary. Unable to make that piece work at this time. 
+using System;
+
+class GFG
+{
+    static void descOrder(char[] s)
+    {
+        Array.Sort(s);
+        reverse(s);
+    }
+    static void reverse(char[] a)
+    {
+        int i, n = a.Length;
+        char t;
+        for (i = 0; i < n / 2; i++)
+        {
+            t = a[i];
+            a[i] = a[n - i - 1];
+            a[n - i - 1] = t;
+        }
+    }
+    public static void Main(String[] args)
+    {
+        char[] s = "TheCatintheHat".ToCharArray();
+        descOrder(s); 
+        Console.WriteLine(String.Join("", s));
+    }
+}
+*/
