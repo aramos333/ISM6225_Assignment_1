@@ -278,6 +278,8 @@ namespace Assignment1
         // Used in question #2
         public static string[] StringSplit(string in_string, char delimiter)
         {
+            // splits string where it finds the provided delimeter
+
             List<String> words = new List<String>();
             int start = 0;
 
@@ -302,7 +304,7 @@ namespace Assignment1
         // Used in question #2
         public static string StringReverse(string in_string)
         {
-
+            // reverses the order of characters in a string
             string out_string = String.Empty;
 
             for (int i = in_string.Length - 1; i > -1; i--)
@@ -345,6 +347,7 @@ namespace Assignment1
 
             }
 
+            // Compute sum of values in the dictionary
             foreach (KeyValuePair<int, int> item in MinimumSum)
             {
                 sum = sum + item.Value;
@@ -494,8 +497,7 @@ namespace Assignment1
             // Using dictionary data structure
             Dictionary<int, int> Intersection = new Dictionary<int, int>();
 
-            // Initial pointers and results for merge check.
-            int x = -1;
+            // compare each item in array 1 to each item in array 2.
             bool found = false;
             for (int i = 0; i < nums1.Length; i++)
             {
@@ -534,6 +536,8 @@ namespace Assignment1
             {
                 for (int j = i + 1; j < arr.Length; j++)
                 {
+                    // if the values of array positions are the same, check if 
+                    // the difference of indexes equal k
                     if (arr[i] == arr[j])
                     {
                         if ((j - i).Equals(k))
@@ -553,6 +557,7 @@ namespace Assignment1
 
         public static int[] Convert2NumericArray(string[] input)
         {
+            // takes a string of numeric values and returns an array of integers
             int[] results = new int[input.Length];
             for (int i = 0; i < input.Length; i++)
             {
