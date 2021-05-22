@@ -445,66 +445,6 @@ namespace Assignment1
 
 
 
-        // Used in question #5
-        public static int[] IntersectX(int[] nums1, int[] nums2)
-        {
-            int[] results = new int[nums1.Length];
-
-            // Initial pointers and results for merge check.
-            int i = 0;
-            int j = 0;
-            int value = 0;
-
-            // Continue until either array is exhausted.
-            while ((i < nums1.Length) & (j < nums2.Length))
-            {
-                //Check for intersect or which list has lowest value.
-
-                if (nums1[i] == nums2[j])
-                {
-                    //Intersect, save, advance both lists to next number.
-
-                    results[i] = nums1[i];
-                    value = nums1[i];
-
-                    while ((i < nums1.Length) & (nums1[i] == value))
-                    {
-                        i++;
-                    }
-
-                    while ((j < nums2.Length) & (nums2[j] == value))
-                    {
-                        j++;
-                    }
-
-                }
-                else if (nums1[i] < nums2[j])
-                {
-                    //# A has smallest, advance it to next number.
-                    value = nums1[i];
-                    while ((i < nums1.Length) & (nums1[i] == value))
-                    {
-                        i++;
-                    }
-
-                }
-                else
-                {
-                    //# B has smallest, advance it to next number.
-                    value = nums2[j];
-                    while ((j < nums2.Length) & (nums2[j] == value))
-                        j++;
-                }
-
-            }
-
-            return results;
-        }
-
-
-
-
-
         // Not used - only detects distinct values
         // Used in question #5
         public static int[] Intersect2(int[] nums1, int[] nums2)
