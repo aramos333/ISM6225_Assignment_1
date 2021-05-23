@@ -711,3 +711,123 @@ class GFG
     }
 }
 */
+
+
+/* Jessica Greenlee 
+ * local work
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Assignment1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Question 1
+            int[] marks = { 5, 6, 6, 9, 9, 12 }; 
+            int target;
+            int[] result;
+            
+            Console.WriteLine("Q1: Example 1");
+            target = 9;
+            result = targetRange(marks, target);
+            Console.WriteLine($"[{result[0]}, {result[1]}]");
+            
+            Console.WriteLine("Q1: Example 2");
+            target = 10;
+            result = targetRange(marks, target);
+            Console.WriteLine($"[{result[0]}, {result[1]}]");
+            
+            //Question 2
+            string input = "University of South Florida";
+            Console.WriteLine(StringReverse(input));
+            
+            //Question 3
+            int[] arr = { 2, 2, 3, 5, 6 };
+            Console.WriteLine(minSum(arr));
+
+            //Question 4
+            string s = "lleD";
+            Console.WriteLine(FreqSort(s));
+
+        }
+
+        public static int[] targetRange(int[] marks, int target)
+        {
+            int n = 0;
+            int[] result = { -1, -1 };
+            for(int i = 0; i < marks.Length; i++)
+            {
+                if(marks[i] == target)
+                {
+                    result[n] = i;
+                    n++;
+                }
+            }
+            return result;
+        }
+
+        public static string StringReverse(string input)
+        {
+            string result = "";
+            char[] charArray = input.ToCharArray();
+
+            for(int i = charArray.Length - 1; i >= 0; i--)
+            {
+                result = result + charArray[i];
+            }
+
+            return result;
+        }
+
+        public static int minSum(int[] arr)
+        {
+            int len = arr.Length - 1;
+            int result = arr[0];
+            List<int> l = arr.ToList().Distinct().ToList();
+            for(int i = 1; i < len; i++)
+            {
+                result = result + (l[i]);
+            }
+            
+            return result;
+        }
+
+        public static string FreqSort(string s)
+        {
+            string result = "";
+            Dictionary<string, int> d = new Dictionary<string, int>();
+            foreach(char l in s.ToList())
+            {
+                string k = l.ToString();
+                if (d.ContainsKey(k.ToUpper()) || d.ContainsKey(k.ToLower()))
+                {
+                    if(d.TryGetValue(k, out int i))
+                    {
+                        d[k] = d[k] + 1;
+                    }
+                }
+                else
+                {
+                    d.Add(k, 1);
+                }
+
+            }
+
+            foreach (KeyValuePair<string, int> item in d.OrderByDescending(key => key.Value))
+            {
+                result = result + item.Key;
+            }
+
+
+            return result;
+        }
+    }
+}
+ 
+ 
+ 
+ */
